@@ -33,6 +33,11 @@ mongoose.connection.on('error', function (err) {
     logger.error('Mongoose connection error: ' + err);
 });
 
+// MODELS LOAD
+// =============================================================================
+
+var Ninja = require('./models/ninja');
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
