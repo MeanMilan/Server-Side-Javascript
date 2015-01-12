@@ -17,6 +17,22 @@ var logger = bunyan.createLogger({name: 'ServerSideJs'});
 
 var port = process.env.PORT || 3000;        // set our port
 
+// DB SETUP
+// =============================================================================
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/server-side-js'); // connect to our db
+
+// listen to connected event
+mongoose.connection.on('connected', function () {
+    logger.info('Mongoose connected');
+});
+
+// listen to error event
+mongoose.connection.on('error', function (err) {
+    logger.error('Mongoose connection error: ' + err);
+});
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
