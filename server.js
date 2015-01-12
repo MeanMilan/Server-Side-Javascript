@@ -58,7 +58,9 @@ router.use(commonMiddleware);
 // define the route for Ninjas
 router.route('/ninja')
     //create a ninja (accessed at POST http://localhost:8080/api/ninja)(remember to set `x-www-form-urlencoded` as format)
-    .post(ninjaCtrl.save);
+    .post(ninjaCtrl.save)
+    // get all the bears (accessed at GET http://localhost:8080/api/bears)
+    .get(ninjaCtrl.query);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {

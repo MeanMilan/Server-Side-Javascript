@@ -25,3 +25,19 @@ exports.save = function(req, res, next) {
 
     });
 };
+
+// QUERYING NINJAS
+// =============================================================================
+exports.query = function(req, res, next){
+
+    // querying ninjas
+    Ninja.find(function(err, bears){
+
+        // sending the error (if any)
+        if (err)
+            res.send(500, err);
+
+        //sending the response
+        res.send(200, bears);
+    });
+};
