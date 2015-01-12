@@ -1,0 +1,25 @@
+{
+  "name": "Server-Side-Javascript",
+  "version": "1.0.0",
+  "description": "Sample application for \"Server Side Javascript\" talk @Mean Milan",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MeanMilan/Server-Side-Javascript.git"
+  },
+  "author": "Matteo Scandolo & Giovanni Lela",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/MeanMilan/Server-Side-Javascript/issues"
+  },
+  "homepage": "https://github.com/MeanMilan/Server-Side-Javascript",
+  "dependencies": {
+    "express": "^4.10.7",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1",
+    "bunyan": "^1.2.3"
+  }
+}
