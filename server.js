@@ -38,6 +38,11 @@ mongoose.connection.on('error', function (err) {
 
 var Ninja = require('./models/ninja');
 
+// CONTROLLERS LOAD
+// =============================================================================
+
+var ninjaCtrl = require('./controllers/ninja');
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
@@ -49,6 +54,11 @@ var commonMiddleware = function(req, res, next){
 };
 
 router.use(commonMiddleware);
+
+// define the route for Ninjas
+router.route('/ninja')
+    //create a ninja (accessed at POST http://localhost:8080/api/ninja)(remember to set `x-www-form-urlencoded` as format)
+    .post(ninjaCtrl.save);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {
