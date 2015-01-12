@@ -42,6 +42,14 @@ var Ninja = require('./models/ninja');
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
 
+// middleware to use for all request
+var commonMiddleware = function(req, res, next){
+    logger.info('Captured ' + req.method + ' request to ' + req.baseUrl+req.url);
+    next(); // make sure to go to the next route
+};
+
+router.use(commonMiddleware);
+
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {
     res.json({ message: 'Hooray! Welcome to Mean Milan!' });   
