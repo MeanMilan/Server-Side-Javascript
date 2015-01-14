@@ -1,3 +1,9 @@
+// Handling Ninja
+// ==============
+//
+// This is NOT a good example of Angular Development
+// It has been developed in short time just to have a client for the NodeJs application, that is the real scope of the Talk
+
 angular.module('handlingNinja', ['ngResource'])
     .service('Ninja',function($resource){
         var Ninja = $resource('http://127.0.0.1:3000/api/ninja/:_id',{_id: '@_id'});
