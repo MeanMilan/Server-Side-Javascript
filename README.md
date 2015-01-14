@@ -69,3 +69,9 @@ Create a route to delete a specific Ninja
 ### 08 - Update Ninja
 
 Create a route to update a Ninja
+
+### 09 - Client
+
+Create an Angular application to consume your rest service (out of scope, only for clearance)
+
+To run this application go to `client` folder, execute `npm install`, execute `bower install` and then run with `grunt serve`

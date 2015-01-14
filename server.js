@@ -6,11 +6,15 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var bunyan     = require('bunyan');         // load bunyan
+var cors       = require('cors');           // enable CORS
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// enable CORS for this app
+app.use(cors());
 
 // configure app to use bunyan as logger
 var logger = bunyan.createLogger({name: 'ServerSideJs'});
