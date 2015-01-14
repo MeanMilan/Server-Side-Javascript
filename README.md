@@ -61,3 +61,7 @@ Define a function to query all Ninjas.
 
 Create a route to get information about a specific Ninja
 Add a parameter to the route
+
+### 07 - Update Ninja
+
+Create a route to delete a specific Ninja

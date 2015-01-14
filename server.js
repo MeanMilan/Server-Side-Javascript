@@ -63,7 +63,8 @@ router.route('/ninja')
     .get(ninjaCtrl.query);
 
 router.route('/ninja/:_id')
-    .get(ninjaCtrl.get);
+    .get(ninjaCtrl.get)
+    .delete(ninjaCtrl.remove);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {

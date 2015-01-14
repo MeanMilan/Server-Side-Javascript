@@ -57,3 +57,19 @@ exports.get = function(req, res, next){
         res.send(200, bear);
     });
 };
+
+// DELETE ONE NINJA
+// =============================================================================
+exports.remove = function(req, res, next){
+
+    // querying ninjas
+    Ninja.remove({_id : req.params._id}, function(err, bear){
+
+        // sending the error (if any)
+        if (err)
+            res.send(500, err);
+
+        //sending the response
+        res.send(200, {message : 'Successfully Deleted Ninja with id: ' + req.params._id});
+    });
+};
