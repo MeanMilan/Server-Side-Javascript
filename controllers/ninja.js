@@ -41,3 +41,19 @@ exports.query = function(req, res, next){
         res.send(200, bears);
     });
 };
+
+// QUERYING ONE NINJA
+// =============================================================================
+exports.get = function(req, res, next){
+
+    // querying ninjas
+    Ninja.findById(req.params._id, function(err, bear){
+
+        // sending the error (if any)
+        if (err)
+            res.send(500, err);
+
+        //sending the response
+        res.send(200, bear);
+    });
+};

@@ -62,6 +62,9 @@ router.route('/ninja')
     // get all the bears (accessed at GET http://localhost:8080/api/bears)
     .get(ninjaCtrl.query);
 
+router.route('/ninja/:_id')
+    .get(ninjaCtrl.get);
+
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {
     res.json({ message: 'Hooray! Welcome to Mean Milan!' });   

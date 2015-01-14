@@ -56,3 +56,8 @@ Define a function to create and save a Ninja.
 
 Define a route to query all Ninjas.
 Define a function to query all Ninjas.
+
+### 06 - Get Ninja
+
+Create a route to get information about a specific Ninja
+Add a parameter to the route
