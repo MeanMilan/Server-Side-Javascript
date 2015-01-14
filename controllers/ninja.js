@@ -73,3 +73,27 @@ exports.remove = function(req, res, next){
         res.send(200, {message : 'Successfully Deleted Ninja with id: ' + req.params._id});
     });
 };
+
+// UPDATE ONE NINJA
+// =============================================================================
+exports.update = function(req, res, next){
+
+    // loading the right Ninja
+    Ninja.findById(req.params._id, function(err, ninja){
+        if (err)
+            res.send(500, err);
+
+        // set the new ninja name and age (comes from the request)
+        ninja.name = req.body.name;
+        ninja.age = req.body.age;
+
+        //saving the new Ninja
+        ninja.save(function(err, ninja){
+            if (err)
+                res.send(500, err);
+
+            res.send(200, ninja);
+        });
+    });
+    
+};

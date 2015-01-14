@@ -65,3 +65,7 @@ Add a parameter to the route
 ### 07 - Update Ninja
 
 Create a route to delete a specific Ninja
+
+### 08 - Update Ninja
+
+Create a route to update a Ninja

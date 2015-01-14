@@ -64,6 +64,7 @@ router.route('/ninja')
 
 router.route('/ninja/:_id')
     .get(ninjaCtrl.get)
+    .post(ninjaCtrl.update)
     .delete(ninjaCtrl.remove);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
