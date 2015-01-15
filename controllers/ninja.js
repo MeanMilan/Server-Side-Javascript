@@ -21,7 +21,7 @@ exports.save = function(req, res, next) {
         }
 
         //sending the response
-        res.send(200, ninja);
+        res.status(200).send(ninja);
 
     });
 };
@@ -38,7 +38,7 @@ exports.query = function(req, res, next){
             res.send(500, err);
 
         //sending the response
-        res.send(200, bears);
+        res.status(200).send(bears);
     });
 };
 
@@ -54,7 +54,7 @@ exports.get = function(req, res, next){
             res.send(500, err);
 
         //sending the response
-        res.send(200, bear);
+        res.status(200).send(bear);
     });
 };
 
@@ -70,7 +70,7 @@ exports.remove = function(req, res, next){
             res.send(500, err);
 
         //sending the response
-        res.send(200, {message : 'Successfully Deleted Ninja with id: ' + req.params._id});
+        res.status(200).send({message : 'Successfully Deleted Ninja with id: ' + req.params._id});
     });
 };
 
@@ -92,7 +92,7 @@ exports.update = function(req, res, next){
             if (err)
                 res.send(500, err);
 
-            res.send(200, ninja);
+            res.status(200).send(ninja);
         });
     });
     

@@ -84,6 +84,17 @@ app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port, function(){
+var server = app.listen(port, function(){
     logger.info('Magic happens on port ' + port);
+});
+var io;
+exports.io = io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('connected', {message : 'Welcome to realtime Ninjas'});
+});
+
+Ninja.on('created', function(ninja) {
+    logger.info('created ninja' + ninja);
+    io.emit('created', ninja);
 });

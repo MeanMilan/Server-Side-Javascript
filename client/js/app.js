@@ -4,12 +4,34 @@
 // This is NOT a good example of Angular Development
 // It has been developed in short time just to have a client for the NodeJs application, that is the real scope of the Talk
 
-angular.module('handlingNinja', ['ngResource'])
+angular.module('handlingNinja', ['ngResource','btford.socket-io'])
     .service('Ninja',function($resource){
         var Ninja = $resource('http://127.0.0.1:3000/api/ninja/:_id',{_id: '@_id'});
         return Ninja;
     })
-    .controller('NinjaCtrl', function($scope, Ninja){
+    .factory('mySocket', function (socketFactory) {
+        var myIoSocket = io.connect('http://127.0.0.1:3000');
+
+        mySocket = socketFactory({
+            ioSocket: myIoSocket
+        });
+
+        return mySocket;
+    })
+    .controller('NinjaCtrl', function($scope, Ninja, mySocket){
+
+        mySocket.on('connected',function(data){
+            console.log(data);
+        });
+
+        mySocket.on('created', function(ninja){
+            console.log(ninja);
+            $scope.ninjas.push(ninja);
+        });
+
+        mySocket.on('deleted', function(ninja){
+            console.log(ninja);
+        });
 
         $scope.ninjas = [];
 
@@ -26,7 +48,6 @@ angular.module('handlingNinja', ['ngResource'])
 
             ninja.$save().then(function(res){
                 $scope.newNinja = {name: null, age: null};
-                $scope.loadNinja();
             });
         };
 
