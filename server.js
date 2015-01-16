@@ -20,7 +20,7 @@ var port = process.env.PORT || 3000;        // set our port
 // DB SETUP
 // =============================================================================
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'); // ODM (Object Document Mapper)
 mongoose.connect('mongodb://localhost/server-side-js'); // connect to our db
 
 // listen to connected event
