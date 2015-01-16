@@ -1,0 +1,13 @@
+<h2>Non-blocking I/O (2)</h2>
+
+<ul>
+    <li>You use your web browser to make a request for “/about.html” on a Node.js web server. </li>
+    <li>The Node server accepts your request and calls a function to retrieve that file from disk.</li>
+    <li>While the Node server is waiting for the file to be retrieved, it services the next web request.
+    </li>
+    <li>When the file is retrieved, there is a callback function that is inserted in the Node servers queue.
+    </li>
+    <li>The Node server executes that function which in this case would render the “/about.html” page and send it back to your web browser.
+    </li>
+</ul>
+
