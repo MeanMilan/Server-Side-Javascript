@@ -31,7 +31,7 @@ exports.save = function(req, res, next) {
 exports.query = function(req, res, next){
 
     // querying ninjas
-    Ninja.find(function(err, bears){
+    Ninja.find(function(err, ninja){
 
         // sending the error (if any)
         if (err)
