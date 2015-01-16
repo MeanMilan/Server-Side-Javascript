@@ -29,10 +29,6 @@ angular.module('handlingNinja', ['ngResource','btford.socket-io'])
             $scope.ninjas.push(ninja);
         });
 
-        mySocket.on('deleted', function(ninja){
-            console.log(ninja);
-        });
-
         $scope.ninjas = [];
 
         $scope.detail = null;
