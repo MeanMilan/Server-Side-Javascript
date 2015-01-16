@@ -11,6 +11,8 @@ exports.save = function(req, res, next) {
     // set the ninja name and age (comes from the request)
     ninja.name = req.body.name;
     ninja.age = req.body.age;
+    
+    // NEVER ninja = res.body
 
     // save the ninja and check for errors
     ninja.save(function(err, ninja){
