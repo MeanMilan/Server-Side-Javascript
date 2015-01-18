@@ -8,6 +8,9 @@
         .row{
             margin-bottom: 20px;
         }
+        img{
+            width: 50%;
+        }
     </style>
 </head>
 <body ng-app="handlingNinja">
@@ -20,10 +23,11 @@
         </div>
         <section ng-show="!detail">
             <div class="row">
+                <div class="col-xs-2"></div>
                 <div class="col-xs-4">
                     <strong>Name</strong>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-2">
                     <strong>Age</strong>
                 </div>
                 <div class="col-xs-4">
@@ -31,10 +35,13 @@
                 </div>
             </div>
             <div class="row" ng-repeat="ninja in ninjas">
+                <div class="col-xs-2 text-center">
+                    <img src="images/ninja.png" alt="">
+                </div>
                 <div class="col-xs-4">
                     {{ninja.name}}
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-2">
                     {{ninja.age}}
                 </div>
                 <div class="col-xs-4">
