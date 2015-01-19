@@ -31,14 +31,14 @@ exports.save = function(req, res, next) {
 exports.query = function(req, res, next){
 
     // querying ninjas
-    Ninja.find(function(err, bears){
+    Ninja.find(function(err, ninjas){
 
         // sending the error (if any)
         if (err)
             res.send(500, err);
 
         //sending the response
-        res.send(200, bears);
+        res.send(200, ninjas);
     });
 };
 
@@ -47,14 +47,14 @@ exports.query = function(req, res, next){
 exports.get = function(req, res, next){
 
     // querying ninjas
-    Ninja.findById(req.params._id, function(err, bear){
+    Ninja.findById(req.params._id, function(err, ninja){
 
         // sending the error (if any)
         if (err)
             res.send(500, err);
 
         //sending the response
-        res.send(200, bear);
+        res.send(200, ninja);
     });
 };
 
@@ -63,7 +63,7 @@ exports.get = function(req, res, next){
 exports.remove = function(req, res, next){
 
     // querying ninjas
-    Ninja.remove({_id : req.params._id}, function(err, bear){
+    Ninja.remove({_id : req.params._id}, function(err, ninja){
 
         // sending the error (if any)
         if (err)
