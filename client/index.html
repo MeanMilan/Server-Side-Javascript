@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Handling Ninjas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href="css/hover.css" rel="stylesheet" media="all">
     <style>
         .row{
             margin-bottom: 20px;
@@ -31,10 +32,13 @@
                 </div>
             </div>
             <div class="row" ng-repeat="ninja in ninjas">
+                <div class="col-xs-2">
+                    <img src="images/ninja.png" class="hvr-pop">
+                </div>
                 <div class="col-xs-4">
                     {{ninja.name}}
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-2">
                     {{ninja.age}}
                 </div>
                 <div class="col-xs-4">
