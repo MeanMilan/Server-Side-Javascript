@@ -9,6 +9,9 @@ angular.module('handlingNinja', ['ngResource'])
         var Ninja = $resource('http://127.0.0.1:3000/api/ninja/:_id',{_id: '@_id'});
         return Ninja;
     })
+    .factory('_', function($window){
+        return $window._;
+    })
     .controller('NinjaCtrl', function($scope, Ninja){
 
         $scope.ninjas = [];
@@ -26,7 +29,7 @@ angular.module('handlingNinja', ['ngResource'])
 
             ninja.$save().then(function(res){
                 $scope.newNinja = {name: null, age: null};
-                $scope.loadNinja();
+                $scope.ninjas.push(new Ninja(res));
             });
         };
 
@@ -46,7 +49,7 @@ angular.module('handlingNinja', ['ngResource'])
 
         $scope.deleteNinja = function(ninja){
             ninja.$remove().then(function(res){
-                $scope.loadNinja();
+                _.remove($scope.ninjas, {_id: ninja._id});
             });
         };
 
