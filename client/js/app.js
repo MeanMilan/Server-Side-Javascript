@@ -18,7 +18,10 @@ angular.module('handlingNinja', ['ngResource','btford.socket-io'])
 
         return mySocket;
     })
-    .controller('NinjaCtrl', function($scope, Ninja, mySocket){
+    .factory('_', function($window){
+        return $window._;
+    })
+    .controller('NinjaCtrl', function($scope, Ninja, mySocket, _){
 
         mySocket.on('connected',function(data){
             console.log(data);
@@ -26,7 +29,7 @@ angular.module('handlingNinja', ['ngResource','btford.socket-io'])
 
         mySocket.on('created', function(ninja){
             console.log(ninja);
-            $scope.ninjas.push(ninja);
+            $scope.ninjas.push(new Ninja(ninja));
         });
 
         $scope.ninjas = [];
@@ -62,8 +65,9 @@ angular.module('handlingNinja', ['ngResource','btford.socket-io'])
         };
 
         $scope.deleteNinja = function(ninja){
-            ninja.$remove().then(function(res){
-                $scope.loadNinja();
+            ninja.$remove()
+            .then(function(res){
+                _.remove($scope.ninjas, {_id: ninja._id});
             });
         };
 

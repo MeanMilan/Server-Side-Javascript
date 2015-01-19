@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Handling Ninjas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/hover.css">
     <style>
         .row{
             margin-bottom: 20px;
@@ -36,7 +37,7 @@
             </div>
             <div class="row" ng-repeat="ninja in ninjas">
                 <div class="col-xs-2 text-center">
-                    <img src="images/ninja.png" alt="">
+                    <img src="images/ninja.png" class="hvr-pop">
                 </div>
                 <div class="col-xs-4">
                     {{ninja.name}}
@@ -46,7 +47,7 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="btn btn-primary" ng-click="getNinja(ninja._id)">Details</div>
-                    <div class="btn btn-danger" ng-click="deleteNinja(ninja)">Delete</div>
+                    <div class="btn btn-danger" ng-click="deleteNinja(ninja, ninja._id)">Delete</div>
                 </div>
             </div>
             <div class="row">
@@ -76,7 +77,8 @@
             </div>
         </section>
     </div>
-
+    
+    <script src="lib/lodash/dist/lodash.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
