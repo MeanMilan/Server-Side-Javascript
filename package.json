@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/MeanMilan/Server-Side-Javascript",
   "dependencies": {
+    "body-parser": "~1.0.1",
+    "bunyan": "^1.2.3",
+    "cors": "^2.5.2",
     "express": "^4.10.7",
     "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1",
-    "bunyan": "^1.2.3"
+    "mongoose-eventful": "^0.1.3",
+    "socket.io": "^1.2.1"
   }
 }
