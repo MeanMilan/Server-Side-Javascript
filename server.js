@@ -87,12 +87,22 @@ app.use('/api', router);
 var server = app.listen(port, function(){
     logger.info('Magic happens on port ' + port);
 });
+
+// INSTANTIATE SOCKET.IO
+// =============================================================================
+
 var io;
 exports.io = io = require('socket.io').listen(server);
+
+// LISTEN TO "CONNECTION" EVENT (FROM SOCKET.IO)
+// =============================================================================
 
 io.sockets.on('connection', function (socket) {
     socket.emit('connected', {message : 'Welcome to realtime Ninjas'});
 });
+
+// LISTEN TO "CREATED" EVENT (FROM MONGOOSE-EVENTFULL)
+// =============================================================================
 
 Ninja.on('created', function(ninja) {
     logger.info('created ninja' + ninja);
