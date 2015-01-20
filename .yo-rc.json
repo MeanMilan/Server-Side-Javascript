@@ -40,7 +40,7 @@
     ],
     "presentationTitle": "Server side javascript",
     "packageVersion": "0.0.0",
-    "revealTheme": "solarized",
+    "revealTheme": "night",
     "useSass": false,
     "deployToGithubPages": false
   }

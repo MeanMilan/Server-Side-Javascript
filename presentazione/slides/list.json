@@ -1,5 +1,5 @@
 [
-    "index.md",
+    "index.html",
     "whats-next.html",
     "really-quick-history.html",
     "enter-node-js.html",
@@ -11,23 +11,17 @@
     "non-blocking-io-analogy.html",
     "non-blocking-io-2.html",
     "so.html",
-    "event-loop.html",
     "event-loop-2.html",
     "event-loop-3.html",
     "what-not-to-do.html",
     "what-to-do-apis.html",
     "what-to-do-fullstack-apps.html",
     "what-to-do-real-time-web-apps.html",
-    "what-to-do-npm-on-the-client.html",
     "what-to-do-tomorrow-or-maybe-today.html",
     "differences-from-the-front-end.html",
     "excellent-parts-of-javascripts.html",
     "different-globals.html",
-    "npm.html",
-    "example.html",
-    "organize-code-in-modules.html",
+    "commonjs.html",
     "built-in-libraries.html",
-    "many-many-callbacks.html",
-    "migrations-before.html",
-    "migrations-after.html"
+    "many-many-callbacks.html"
 ]
