@@ -1,10 +1,8 @@
-<h2>Event loop - 2</h2>
+<h2>Event loop </h2>
 
 <ul>
-    <li>A JavaScript runtime contains a message queue, which is a list of messages to be processed</li>
-    <li>To each message is associated a function. When the stack is empty, a message is taken out of the queue and processed.</li>
-    <li>The processing consists of calling the associated function (and thus creating an initial stack frame). </li>
-    <li>The message processing ends when the stack becomes empty again.
-    </li>
+    <li>A JavaScript runtime contains an event queue, which is a list of tasks to be processed</li>
+    <li>Each message event is bound to a callback function</li>
+    <li>The said runtime loops on the queue, executing all the event callbacks  </li>
 </ul>
 

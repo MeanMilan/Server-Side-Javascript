@@ -1,0 +1,19 @@
+<h2>Common js globals</h2>
+
+<code class="prettyprint">
+
+    //hello.js <br>
+    exports.getGreetings = function() { <br>
+        return 'Hello World'; <br>
+        };<br>
+
+<code>
+
+<code class="prettyprint">
+
+    //example.js<br>
+
+    var hello = require('./hello.js');<br>
+
+    var greetings = hello.getGreetings();<br>
+<code>
