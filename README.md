@@ -4,7 +4,7 @@ This is a working example of a Basic CRUD application developed in Node.js
 
 ## How to view the slides
 
-`cd presentazione`
+`cd presentazione`<br>
 `npm install`
 `bower install`
 `grunt serve`
