@@ -1,0 +1,9 @@
+{
+  "name": "server-side-javascript",
+  "version": "0.0.0",
+  "dependencies": {
+    "reveal.js": "~2.6.1",
+    "reveal-highlight-themes": "~8.3.0",
+    "google-code-prettify": "~1.0.3"
+  }
+}
