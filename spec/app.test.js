@@ -77,9 +77,19 @@ describe('The application', function(){
 			.get('http://localhost:4000/api/ninja')
 			.end(function(res){
 				expect(res.body.length).to.equal(1);
-				expect(res.body[0].name).to.equal(ninjaHelper.ninja.name);
-				expect(res.body[0].age).to.equal(ninjaHelper.ninja.age);
+				expect(res.body[0].name).to.equal(_ninja.name);
+				expect(res.body[0].age).to.equal(_ninja.age);
 				done();
 			});
+	});
+
+	it('should get a ninja', function(done){
+		request
+			.get('http://localhost:4000/api/ninja/'+_ninja._id)
+			.end(function(res){
+				expect(res.body.name).to.equal(_ninja.name);
+				expect(res.body.age).to.equal(_ninja.age);
+				done();
+			})
 	});
 });

@@ -18,5 +18,7 @@ exports.nuke = P.promisify(function(done){
 
 exports.insert = P.promisify(function(done){
 	var ninja = new Ninja(testNinja);
-	ninja.save(done);
+	ninja.save(function(err, doc){
+		done(null, doc);
+	});
 });
