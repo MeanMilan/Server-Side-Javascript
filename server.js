@@ -52,6 +52,17 @@ var commonMiddleware = function(req, res, next){
     next(); // make sure to go to the next route
 };
 
+// DEFINE error middleware
+var errorHandler = function(err, req, res, next){
+
+    // Here we can define different behavior for different type of errors,
+    // for example you can parse mongoose validation errors,
+    // or define custom HttpStatus,
+    // or ...
+
+    res.send(500, err);
+};
+
 router.use(commonMiddleware);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
@@ -64,6 +75,10 @@ router.get('/', function(req, res) {
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+// ATTACH the error Middleware
+// =============================================================================
+app.use(errorHandler);
 
 // START THE SERVER
 // =============================================================================
