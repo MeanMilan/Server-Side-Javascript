@@ -17,11 +17,11 @@ exports.save = function(req, res, next) {
 
         // sending the error (if any)
         if(err){
-            res.send(500, err);
+            return next(err);
         }
 
         //sending the response
-        res.send(200, ninja);
+        res.status(200).send(ninja);
 
     });
 };
@@ -34,10 +34,11 @@ exports.query = function(req, res, next){
     Ninja.find(function(err, ninjas){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if (err){
+            return next(err);
+        }
 
         //sending the response
-        res.send(200, ninjas);
+        res.status(200).send(ninjas);
     });
 };
