@@ -1,3 +1,5 @@
+'use strict';
+
 // BASE SETUP
 // =============================================================================
 
@@ -52,9 +54,20 @@ var ninjaCtrl = require('./controllers/ninja');
 var router = express.Router();              // get an instance of the express Router
 
 // middleware to use for all request
-var commonMiddleware = function(req, res, next){
-    logger.info('Captured ' + req.method + ' request to ' + req.baseUrl+req.url);
+var commonMiddleware = function (req, res, next) {
+    logger.info('Captured ' + req.method + ' request to ' + req.baseUrl + req.url);
     next(); // make sure to go to the next route
+};
+
+// DEFINE error middleware
+var errorHandler = function (err, req, res, next) {
+
+    // Here we can define different behavior for different type of errors,
+    // for example you can parse mongoose validation errors,
+    // or define custom HttpStatus,
+    // or ...
+
+    res.status(500).send(err);
 };
 
 router.use(commonMiddleware);
@@ -72,15 +85,20 @@ router.route('/ninja/:_id')
     .delete(ninjaCtrl.remove);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'Hooray! Welcome to Mean Milan!' });   
+router.get('/', function (req, res) {
+    res.json({ message: 'Hooray! Welcome to Mean Milan!' });
 });
 
 // more routes for our API will happen here
 
-// REGISTER OUR ROUTES -------------------------------
+// REGISTER OUR ROUTES 
+// =============================================================================
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+// ATTACH the error Middleware
+// =============================================================================
+app.use(errorHandler);
 
 // START THE SERVER
 // =============================================================================
