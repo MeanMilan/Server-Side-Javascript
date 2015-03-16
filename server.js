@@ -57,11 +57,17 @@ var commonMiddleware = function(req, res, next){
     next(); // make sure to go to the next route
 };
 
+// DEFINE error middleware
+var errorHandler = function(err, req, res, next){
+    console.log('error middleware');
+    res.send(500, err);
+};
+
 router.use(commonMiddleware);
 
 // define the route for Ninjas
 router.route('/ninja')
-    //create a ninja (accessed at POST http://localhost:8080/api/ninja)(remember to set `x-www-form-urlencoded` as format)
+    //create a ninja (accessed at POST http://localhost:3000/api/ninja)(remember to set `x-www-form-urlencoded` as format)
     .post(ninjaCtrl.save);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
@@ -71,9 +77,14 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-// REGISTER OUR ROUTES -------------------------------
+// REGISTER OUR ROUTES
+// =============================================================================
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+// ATTACH the error Middleware
+// =============================================================================
+app.use(errorHandler);
 
 // START THE SERVER
 // =============================================================================

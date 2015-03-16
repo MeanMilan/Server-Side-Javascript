@@ -19,11 +19,11 @@ exports.save = function(req, res, next) {
 
         // sending the error (if any)
         if(err){
-            res.send(500, err);
+            return next(err);
         }
 
         //sending the response
-        res.send(200, ninja);
+        res.status(200).send(ninja);
 
     });
 };
