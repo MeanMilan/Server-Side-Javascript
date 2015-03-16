@@ -59,7 +59,12 @@ var commonMiddleware = function(req, res, next){
 
 // DEFINE error middleware
 var errorHandler = function(err, req, res, next){
-    console.log('error middleware');
+
+    // Here we can define different behavior for different type of errors,
+    // for example you can parse mongoose validation errors,
+    // or define custom HttpStatus,
+    // or ...
+
     res.send(500, err);
 };
 
