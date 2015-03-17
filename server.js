@@ -123,6 +123,13 @@ io.sockets.on('connection', function (socket) {
 // =============================================================================
 
 Ninja.on('created', function(ninja) {
-    logger.info('created ninja' + ninja);
     io.emit('created', ninja);
+});
+
+// LISTEN TO "REMOVED" EVENT (FROM MONGOOSE-EVENTFULL)
+// =============================================================================
+
+Ninja.on('removed', function(ninja) {
+    console.log('removed', ninja);
+    io.emit('deleted', ninja);
 });

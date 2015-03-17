@@ -1,5 +1,32 @@
 var mongoose = require('mongoose');
 var Ninja    = mongoose.model('Ninja');
+var P = require('bluebird');
+
+// COMMON FUNCTIONS
+// =============================================================================
+
+// Define a promisified function to load a ninja
+var getNinja = P.promisify(
+    function(ninjaId, done){
+        Ninja.findById(ninjaId, done);
+    }
+);
+
+// Define a promisified function to update a ninja
+var updateNinja = P.promisify(
+    function(ninja, done){
+        ninja.name = req.body.name;
+        ninja.age = req.body.age;
+        ninja.save(done);
+    }
+);
+
+// Define a promisified function to remove a ninja
+var removeNinja = P.promisify(
+    function(ninja, done){
+        ninja.remove(done);
+    }
+);
 
 // CREATING NINJAS
 // =============================================================================
@@ -17,7 +44,7 @@ exports.save = function(req, res, next) {
 
         // sending the error (if any)
         if(err){
-            res.send(500, err);
+            return done(err);
         }
 
         //sending the response
@@ -31,14 +58,15 @@ exports.save = function(req, res, next) {
 exports.query = function(req, res, next){
 
     // querying ninjas
-    Ninja.find(function(err, bears){
+    Ninja.find(function(err, ninjas){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if(err){
+            return done(err);
+        }
 
         //sending the response
-        res.status(200).send(bears);
+        res.status(200).send(ninjas);
     });
 };
 
@@ -47,14 +75,15 @@ exports.query = function(req, res, next){
 exports.get = function(req, res, next){
 
     // querying ninjas
-    Ninja.findById(req.params._id, function(err, bear){
+    Ninja.findById(req.params._id, function(err, ninja){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if(err){
+            return done(err);
+        }
 
         //sending the response
-        res.status(200).send(bear);
+        res.status(200).send(ninja);
     });
 };
 
@@ -62,15 +91,14 @@ exports.get = function(req, res, next){
 // =============================================================================
 exports.remove = function(req, res, next){
 
-    // querying ninjas
-    Ninja.remove({_id : req.params._id}, function(err, bear){
-
-        // sending the error (if any)
-        if (err)
-            res.send(500, err);
-
-        //sending the response
-        res.status(200).send({message : 'Successfully Deleted Ninja with id: ' + req.params._id});
+    // deleting ninjas
+    getNinja(req.params._id)                    // loading the right Ninja
+    .then(removeNinja)
+    .then(function(removedNinja){               
+        res.status(200).send(removedNinja);     // Handling Response
+    })
+    .catch(function(e){
+        return next(e);                         // Handling Errors
     });
 };
 
@@ -78,22 +106,14 @@ exports.remove = function(req, res, next){
 // =============================================================================
 exports.update = function(req, res, next){
 
-    // loading the right Ninja
-    Ninja.findById(req.params._id, function(err, ninja){
-        if (err)
-            res.send(500, err);
-
-        // set the new ninja name and age (comes from the request)
-        ninja.name = req.body.name;
-        ninja.age = req.body.age;
-
-        //saving the new Ninja
-        ninja.save(function(err, ninja){
-            if (err)
-                res.send(500, err);
-
-            res.status(200).send(ninja);
-        });
+    // create a chained Promise that update a Ninja
+    getNinja(req.params._id)                    // loading the right Ninja
+    .then(updateNinja)                          // Updating the right Ninja
+    .then(function(updatedNinja){               
+        res.status(200).send(updatedNinja);     // Handling Response
+    })
+    .catch(function(e){
+        return next(e);                         // Handling Errors
     });
     
 };
