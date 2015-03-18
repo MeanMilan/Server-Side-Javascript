@@ -130,6 +130,12 @@ Ninja.on('created', function(ninja) {
 // =============================================================================
 
 Ninja.on('removed', function(ninja) {
-    console.log('removed', ninja);
     io.emit('deleted', ninja);
+});
+
+// LISTEN TO "CHANGED" EVENT (FROM MONGOOSE-EVENTFULL)
+// =============================================================================
+
+Ninja.on('changed', function(ninja) {
+    io.emit('changed', ninja);
 });

@@ -14,9 +14,12 @@ angular.module('handlingNinja')
         });
 
         mySocket.on('deleted', function(ninja){
-            console.warn('deleted Ninja');
-            // $scope.ninjas.push(new Ninja(ninja));
             _.remove($scope.ninjas, {_id: ninja._id});
+        });
+
+        mySocket.on('changed', function(ninja){
+            var id = _.findIndex($scope.ninjas, {_id: ninja._id});
+            $scope.ninjas[id] = ninja;
         });
 
         // CRUD FUNCTIONS
