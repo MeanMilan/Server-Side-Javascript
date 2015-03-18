@@ -17,11 +17,11 @@ exports.save = function(req, res, next) {
 
         // sending the error (if any)
         if(err){
-            res.send(500, err);
+            return next(err);
         }
 
         //sending the response
-        res.send(200, ninja);
+        res.status(200).send(ninja);
 
     });
 };
@@ -34,11 +34,12 @@ exports.query = function(req, res, next){
     Ninja.find(function(err, ninjas){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if(err){
+            return next(err);
+        }
 
         //sending the response
-        res.send(200, ninjas);
+        res.status(200).send(ninjas);
     });
 };
 
@@ -50,11 +51,12 @@ exports.get = function(req, res, next){
     Ninja.findById(req.params._id, function(err, ninja){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if(err){
+            return next(err);
+        }
 
         //sending the response
-        res.send(200, ninja);
+        res.status(200).send(ninja);
     });
 };
 
@@ -66,11 +68,12 @@ exports.remove = function(req, res, next){
     Ninja.remove({_id : req.params._id}, function(err, ninja){
 
         // sending the error (if any)
-        if (err)
-            res.send(500, err);
+        if(err){
+            return next(err);
+        }
 
         //sending the response
-        res.send(200, {message : 'Successfully Deleted Ninja with id: ' + req.params._id});
+        res.status(200).send({message : 'Successfully Deleted Ninja with id: ' + req.params._id});
     });
 };
 
@@ -80,8 +83,9 @@ exports.update = function(req, res, next){
 
     // loading the right Ninja
     Ninja.findById(req.params._id, function(err, ninja){
-        if (err)
-            res.send(500, err);
+        if(err){
+            return next(err);
+        }
 
         // set the new ninja name and age (comes from the request)
         ninja.name = req.body.name;
@@ -89,10 +93,14 @@ exports.update = function(req, res, next){
 
         //saving the new Ninja
         ninja.save(function(err, ninja){
-            if (err)
-                res.send(500, err);
+            if(err){
+                return next(err);
+            }
 
-            res.send(200, ninja);
+            // NOTE that the CallbackHell has started!
+            // To avoid this please check out some FP Libraries (Bluebird, Async, FunctionalJs)
+
+            res.status(200).send(ninja);
         });
     });
     
