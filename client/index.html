@@ -49,29 +49,33 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-4">
-                    <input class="form-control" type="text" ng-model="newNinja.name" placeholder="Name">
-                </div>
-                <div class="col-xs-4">
-                    <input class="form-control" type="text" ng-model="newNinja.age" placeholder="Age">
-                </div>
-                <div class="col-xs-4">
-                    <div class="btn btn-success" ng-click="createNinja()">Create</div>
-                </div>
+                <form ng-submit="createNinja()">
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" ng-model="newNinja.name" placeholder="Name">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" ng-model="newNinja.age" placeholder="Age">
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-success">Create</button>
+                    </div>
+                </form>
             </div>
         </section>
         <section ng-show="detail">
             <div class="row">
-                <div class="col-xs-4">
-                    <input class="form-control" type="text" ng-model="ninja.name" placeholder="Name">
-                </div>
-                <div class="col-xs-4">
-                    <input class="form-control" type="text" ng-model="ninja.age" placeholder="Age">
-                </div>
-                <div class="col-xs-4">
-                    <div class="btn btn-success" ng-click="updateNinja()">Update</div>
-                    <div class="btn btn-default" ng-click="detail = null">Back</div>
-                </div>
+                <form  ng-submit="updateNinja()">
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" ng-model="ninja.name" placeholder="Name">
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" ng-model="ninja.age" placeholder="Age">
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-success">Update</button>
+                        <div class="btn btn-default" ng-click="detail = null">Back</div>
+                    </div>
+                </form>
             </div>
         </section>
     </div>
