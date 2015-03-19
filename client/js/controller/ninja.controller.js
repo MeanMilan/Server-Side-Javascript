@@ -19,7 +19,7 @@ angular.module('handlingNinja')
 
         mySocket.on('changed', function(ninja){
             var id = _.findIndex($scope.ninjas, {_id: ninja._id});
-            $scope.ninjas[id] = ninja;
+            $scope.ninjas[id] = new Ninja(ninja);
         });
 
         // CRUD FUNCTIONS
