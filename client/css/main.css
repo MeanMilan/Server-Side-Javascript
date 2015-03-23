@@ -5,6 +5,11 @@ img{
     width: 50%;
 }
 @media screen and (max-width: 767px) {
+
+    img{
+        width: 150%;
+    }
+
     .btn.full{
         width: 100%;
     }
