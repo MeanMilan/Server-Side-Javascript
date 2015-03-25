@@ -10,7 +10,6 @@ var _ = require('lodash');
 var getNinja = P.promisify(
     function(ninjaId, done){
         Ninja.findById(ninjaId, function(err, res){
-            console.log(err, res);
             return done(err, res);
         });
     }
@@ -19,10 +18,8 @@ var getNinja = P.promisify(
 // Define a promisified function to update a ninja
 var updateNinja = P.promisify(
     function(req, ninja, done){
-        console.log(req);
         ninja.name = req.body.name;
         ninja.age = req.body.age;
-        console.log(ninja);
         ninja.save(done);
     }
 );
