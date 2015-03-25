@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MeanMilan/Server-Side-Javascript",
   "dependencies": {
+    "bluebird": "^2.9.14",
     "body-parser": "~1.0.1",
     "bunyan": "^1.2.3",
     "cors": "^2.5.2",
